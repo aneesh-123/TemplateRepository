@@ -13,6 +13,7 @@ export default function Home() {
   const [initialSpin, setInitialSpin] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [hasNotification, setHasNotification] = useState(true);
+  const [imageExists, setImageExists] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
 
   // Prevent hydration error by only rendering confetti after mount
@@ -20,6 +21,16 @@ export default function Home() {
     setMounted(true);
     // Stop initial spin after 1 second (one revolution)
     setTimeout(() => setInitialSpin(false), 1000);
+    
+    // Check if dad's photo exists
+    const checkImage = () => {
+      const img = new window.Image();
+      img.onload = () => setImageExists(true);
+      img.onerror = () => setImageExists(false);
+      img.src = '/assets/dad-photo.jpg';
+    };
+    
+    checkImage();
   }, []);
 
   // Optional: Hide confetti after a certain time as backup
@@ -178,17 +189,28 @@ export default function Home() {
         <div className="flex justify-center">
           <div 
             className={`relative w-60 h-60 rounded-full overflow-hidden border-4 border-green-800 shadow-2xl cursor-pointer transition-transform duration-1000 ${
+              !imageExists ? 'bg-gray-200 flex items-center justify-center' : ''
+            } ${
               (isSpinning || initialSpin) ? 'spin-once' : 'hover:scale-105'
             }`}
             onClick={handleImageClick}
           >
-            <Image
-              src="/assets/dad-photo.jpg"
-              alt="Dad's Picture"
-              fill
-              className="object-cover"
-              priority
-            />
+            {imageExists ? (
+              <Image
+                src="/assets/dad-photo.jpg"
+                alt="Dad's Picture"
+                fill
+                className="object-cover"
+                priority
+              />
+            ) : (
+              /* Placeholder for dad's photo */
+              <div className="text-center text-gray-500">
+                <div className="text-6xl mb-2">👨</div>
+                <p className="text-sm font-medium">Add Dad&apos;s Photo</p>
+                <p className="text-xs">Replace with<br />/assets/dad-photo.jpg</p>
+              </div>
+            )}
           </div>
         </div>
 

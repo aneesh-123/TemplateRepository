@@ -27,8 +27,9 @@ npm install
 ### 3. Customize Your Content
 
 #### **Add Your Dad's Photo**
-1. Replace `/public/assets/dad-photo.jpg` with your dad's picture
-2. Keep the filename as `dad-photo.jpg` or update the path in `src/app/page.tsx`
+1. Add your dad's picture to `/public/assets/dad-photo.jpg`
+2. The template shows a placeholder until you add the photo
+3. For best results, use a square (1:1 aspect ratio) image
 
 #### **Customize Your Message**
 Edit `src/app/page.tsx` and find these sections:
