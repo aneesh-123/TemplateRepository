@@ -217,7 +217,7 @@ export default function Home() {
         {/* Glassmorphic Message Container */}
         <div className="backdrop-blur-lg bg-green-100/30 bg-opacity-30 border border-green-200/20 rounded-3xl px-12 py-6 shadow-2xl">
           <h1 className="text-4xl md:text-6xl font-bold text-green-800 text-center whitespace-nowrap">
-            Happy Father's Day, Dad!
+            Happy Father&apos;s Day, Dad!
           </h1>
         </div>
 
